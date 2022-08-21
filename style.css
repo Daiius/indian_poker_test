@@ -1,0 +1,19 @@
+
+.playerData {
+  white-space: nowrap;
+}
+
+.playerData div {
+  display: inline-block;
+  /*margin-left: 30px;*/
+  width:  150px;
+}
+
+.inturn {
+  border: 2px solid black;
+}
+
+.buttons input {
+  display: inline-block;
+  margin-left: 30px;
+}
