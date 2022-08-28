@@ -1,26 +1,27 @@
 
 import React, { useState, useEffect } from "react"
 
-import { PlayerData } from "./PlayerData"
+import { PlayersData } from "./PlayersData"
 import { ButtonsContainer } from "./ButtonsContainer"
 
-import { PokerEngine } from "./poker_engine"
+import { Data, PokerEngine } from "./poker_engine"
 
 export const MainContainer = () => {
 
   const [engine, _] = useState(new PokerEngine);
-
+  const [data, setData] = useState(engine.getData());
+  const [turn, setTurn] = useState(engine.getData().turn);
+  
   return (
     <div>
-      {Object.keys(engine.players).map((name, i) =>
-        <PlayerData name   ={name}
-                    budget ={engine.players[name].budget}
-                    hand   ={engine.players[name].hand}
-                    key    ={name}
-                    inTurn ={i == engine.getTurn()}
-          />
-      )}
-      <ButtonsContainer checkClicked={engine.advance}/>
+      <PlayersData data={data} />
+      <ButtonsContainer checkClicked={()=>{
+        engine.advance();
+        setData(engine.getData());
+        setTurn(engine.getData().turn);
+        console.log(engine.getData());
+      }}/>
+      <div>{turn}</div>
     </div>
   )
 }

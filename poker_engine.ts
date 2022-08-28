@@ -5,28 +5,33 @@
 export interface PlayerParams {
   budget: number;
   hand: number;
-}
+};
+
+export interface Data { 
+  players : { [name: string]: PlayerParams };
+  turn : number;
+};
+
 
 export class PokerEngine {
-  players: { [name: string]: PlayerParams };
-
-  private turn: number;
+  private data: Data;
   
   constructor() {
-    this.players = {
-      "Alice": {budget: 100, hand: 1},
-      "Bob"  : {budget: 100, hand: 2},
-      "Candy": {budget: 100, hand: 3},
+    this.data = {
+      players: {
+        "Alice": {budget: 100, hand: 1},
+        "Bob"  : {budget: 100, hand: 2},
+        "Candy": {budget: 100, hand: 3},
+      },
+      turn: 0
     }
-
-    this.turn = 0;
   }
 
   advance = () => {
-    this.turn = ((this.turn+1) % Object.keys(this.players).length);
+    this.data.turn = ((this.data.turn+1) % Object.keys(this.data.players).length);
   }
 
-  getTurn = () => {
-    return this.turn;
+  getData = (): Data => {
+    return this.data;
   }
 }
