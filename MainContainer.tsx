@@ -10,18 +10,16 @@ export const MainContainer = () => {
 
   const [engine, _] = useState(new PokerEngine);
   const [data, setData] = useState(engine.getData());
-  const [turn, setTurn] = useState(engine.getData().turn);
+
+  const onCheckClicked = () => {
+    engine.advance();
+    setData(engine.getData());
+  }
   
   return (
     <div>
       <PlayersData data={data} />
-      <ButtonsContainer checkClicked={()=>{
-        engine.advance();
-        setData(engine.getData());
-        setTurn(engine.getData().turn);
-        console.log(engine.getData());
-      }}/>
-      <div>{turn}</div>
+      <ButtonsContainer checkClicked={onCheckClicked}/>
     </div>
   )
 }

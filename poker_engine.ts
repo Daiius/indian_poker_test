@@ -32,6 +32,6 @@ export class PokerEngine {
   }
 
   getData = (): Data => {
-    return this.data;
+    return {...this.data };
   }
 }

@@ -10,15 +10,17 @@ interface Props {
 }
 
 export const PlayersData = (props: Props) => {
+
+  var data = props.data;
+
   return (
     <div>
-      {Object.keys(props.data.players).map((name, i) =>
+      {Object.keys(data.players).map((name, i) =>
         <PlayerData name   ={name}
-                    budget ={props.data.players[name].budget}
-                    hand   ={props.data.players[name].hand}
+                    budget ={data.players[name].budget}
+                    hand   ={data.players[name].hand}
                     key    ={name}
-                    turn ={props.data.turn}
-                    index={i}
+                    inTurn ={data.turn == i}
           />
       )}
     </div>
